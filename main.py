@@ -4,7 +4,6 @@ import time
 import json
 from random import randint
 
-
 # Инициализация
 
 with open('settings.json') as json_file:
@@ -15,6 +14,7 @@ with open('settings.json') as json_file:
     targets = data["targets"]
 
 api = SferumAPI.SferumAPI(remixdsid=remixdsid)
+
 bot = telebot.TeleBot(bot_token)
 
 
@@ -61,6 +61,7 @@ def ten_message(message):
 
 @bot.message_handler(commands=["start"])
 def start(message):
+    global api
     chat_id = message.chat.id
     bot.send_message(chat_id, "бот запущен")
     messages_history = api.messages.get_history(peer_id=chat_id_sf, count=1, offset=0)  # peer_id - id чата в Сферум
@@ -107,8 +108,9 @@ def start(message):
             try:
                 last_masage = messages_history["response"]["items"][0]['conversation_message_id']
             except KeyError:
+                api = SferumAPI.SferumAPI(remixdsid=remixdsid)
                 pass
-            continue
+            time.sleep(randint(1, 3) + randint(0, 10) / 10)
 
 
 bot.polling(none_stop=True)
