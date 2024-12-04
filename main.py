@@ -112,5 +112,9 @@ def start(message):
                 pass
             time.sleep(randint(1, 3) + randint(0, 10) / 10)
 
-
-bot.polling(none_stop=True)
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except:
+        time.sleep(5)
+        continue
