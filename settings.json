@@ -2,5 +2,7 @@
   "remixdsid": "",
   "telegram_bot_token": "",
   "chat_id": "",
-  "targets": []
+  "targets": [],
+  "start_msg": 0,
+  "start_fraze": []
 }
