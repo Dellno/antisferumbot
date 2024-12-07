@@ -1,0 +1,5 @@
+SferumAPI
+aiogram
+requests>=2.20.0
+websockets>=10.0
+json2python_models>=0.3.1
