@@ -4,10 +4,11 @@ import json
 from message_parser import message_parser
 from random import choice
 import asyncio
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import Command
 
 # Инициализация
 dp = Dispatcher()
+bot_path = ""
 
 
 async def main():
@@ -52,13 +53,13 @@ async def start(message):
     global pars_is_start
     try:
         chats_id.append(message.chat.id)
-        with open("bot_memory.txt", "w") as f1:
+        with open(bot_path + "bot_memory.txt", "w") as f1:
             f1.write(str(chats_id[0]))
             f1.write("\n")
             f1.write(str(msg_memory[-1]['conversation_message_id']))
 
     except AttributeError:
-        with open("bot_memory.txt", "w") as f1:
+        with open(bot_path + "bot_memory.txt", "w") as f1:
             f1.write(str(chats_id[0]))
             f1.write("\n")
             f1.write(str(msg_memory[-1]['conversation_message_id']))
@@ -68,21 +69,14 @@ async def start(message):
 async def auto_parse():
     global pars_is_start
     if not pars_is_start:
-        try:
-            api.messages.send_message(chat_id_sf, choice(start_fraze))
-        except:
-            pass
         pars_is_start = not pars_is_start
         try:
             msg_history = api.messages.get_history(chat_id_sf, count=200, offset=0)["response"]["items"]
             msg_history.reverse()
             for i in msg_history:
-                try:
-                    if 'conversation_message_id' in i.keys():
-                        if i['conversation_message_id'] > msg_memory[-1]['conversation_message_id']:
-                            msg_memory.append(i)
-                except:
-                    return
+                if 'conversation_message_id' in i.keys():
+                    if i['conversation_message_id'] > msg_memory[-1]['conversation_message_id']:
+                        msg_memory.append(i)
             while True:
                 print("try sferum")
                 msg_history = api.messages.get_history(chat_id_sf, count=200, offset=0)["response"]["items"]
@@ -95,7 +89,7 @@ async def auto_parse():
                             print(msg_memory[-1]['conversation_message_id'])
                             print(i)
                             msg_memory.append(i)
-                            with open("bot_memory.txt", "w") as f1:
+                            with open(bot_path + "bot_memory.txt", "w") as f1:
                                 f1.write(str(chats_id[0]))
                                 f1.write("\n")
                                 f1.write(str(msg_memory[-1]['conversation_message_id']))
@@ -116,7 +110,7 @@ async def auto_parse():
 
 
 if __name__ == "__main__":
-    with open('settings.json') as json_file:
+    with open(bot_path + 'settings.json') as json_file:
         data = json.load(json_file)
         remixdsid = data["remixdsid"]
         bot_token = data["telegram_bot_token"]
@@ -128,7 +122,7 @@ if __name__ == "__main__":
     bot = Bot(bot_token)
     chats_id = [0]
     pars_is_start = False
-    with open("bot_memory.txt", "r") as f1:
+    with open(bot_path + "bot_memory.txt", "r") as f1:
         chats_id[0] = int(f1.readline().rstrip("\n"))
         k = f1.readline().rstrip("\n")
         if k != "":
