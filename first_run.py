@@ -12,7 +12,7 @@ dp = Dispatcher()
 async def main():
 
     bot = Bot(bot_token)
-    tasks=[dp.start_polling(bot),auto_parse()]
+    tasks=[dp.start_polling(bot)]
     await asyncio.gather(*tasks)
 
 @dp.message(Command("start"))
