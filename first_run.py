@@ -1,6 +1,7 @@
 from aiogram import Bot, Dispatcher
 import asyncio
 from aiogram.filters import Command
+from random import choice
 
 # Инициализация
 
@@ -19,6 +20,7 @@ async def start(message):
         f1.write(str(message.chat.id))
         f1.write("\n")
         f1.write(str(msg_memory[-1]['conversation_message_id']))
+    await bot.send_message(chats_id[0], choice(start_fraze))
 
 
 if __name__ == "__main__":
