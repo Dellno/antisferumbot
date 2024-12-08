@@ -6,10 +6,10 @@ from random import choice
 # Инициализация
 
 bot_path = ""
-
+dp = Dispatcher()
 
 async def main():
-    dp = Dispatcher()
+
     bot = Bot(bot_token)
     tasks=[dp.start_polling(bot),auto_parse()]
     await asyncio.gather(*tasks)
