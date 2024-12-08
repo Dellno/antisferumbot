@@ -8,7 +8,7 @@ import json
 
 bot_path = ""
 dp = Dispatcher()
-bot = Bot(bot_token)
+
 async def main():
 
     tasks=[dp.start_polling(bot)]
@@ -31,6 +31,7 @@ if __name__ == "__main__":
         targets = data["targets"]
         start_msg = data["start_msg"]
         start_fraze = data["start_fraze"]
+    bot = Bot(bot_token)
     asyncio.run(main())
 
 
