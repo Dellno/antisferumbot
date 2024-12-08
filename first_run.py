@@ -19,7 +19,7 @@ async def start(message):
     with open(bot_path + "bot_memory.txt", "w") as f1:
         f1.write(str(message.chat.id))
         f1.write("\n")
-    await bot.send_message(chats_id[0], choice(start_fraze))
+    await bot.send_message(message.chat.id, choice(start_fraze))
 
 
 if __name__ == "__main__":
