@@ -2,6 +2,7 @@ from aiogram import Bot, Dispatcher
 import asyncio
 from aiogram.filters import Command
 from random import choice
+import json
 
 # Инициализация
 
