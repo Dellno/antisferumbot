@@ -20,7 +20,6 @@ async def start(message):
     with open(bot_path + "bot_memory.txt", "w") as f1:
         f1.write(str(message.chat.id))
         f1.write("\n")
-        f1.write(str(msg_memory[-1]['conversation_message_id']))
     await bot.send_message(chats_id[0], choice(start_fraze))
 
 
