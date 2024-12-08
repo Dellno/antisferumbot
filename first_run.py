@@ -8,10 +8,9 @@ import json
 
 bot_path = ""
 dp = Dispatcher()
-
+bot = Bot(bot_token)
 async def main():
 
-    bot = Bot(bot_token)
     tasks=[dp.start_polling(bot)]
     await asyncio.gather(*tasks)
 
