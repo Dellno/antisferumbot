@@ -21,3 +21,15 @@ async def start(message):
         f1.write(str(msg_memory[-1]['conversation_message_id']))
 
 
+if __name__ == "__main__":
+    with open(bot_path + 'settings.json') as json_file:
+        data = json.load(json_file)
+        remixdsid = data["remixdsid"]
+        bot_token = data["telegram_bot_token"]
+        chat_id_sf = data["chat_id"]
+        targets = data["targets"]
+        start_msg = data["start_msg"]
+        start_fraze = data["start_fraze"]
+    asyncio.run(main())
+
+
