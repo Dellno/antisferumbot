@@ -18,7 +18,7 @@
 cd antisferumbot
 sudo apt install -y python3-venv
 python3 -m venv myenv
-source venv/bin/activate
+source myenv/bin/activate
 ```
 
 теперь необходимо установить библиотеки для работы бота.
