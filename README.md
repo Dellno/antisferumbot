@@ -75,7 +75,9 @@ After=multi-user.target
 User=имяпользователя
 Group=имяпользователя
 Type=simple
+Environment=PYTHONPATH=/home/имяпользователя/antisferumbot
 Restart=always
+RestartSec=5s
 ExecStart=результат_вывода_команды_pwd/myenv/bin/python3 результат_вывода_команды_pwd/main.py
 [Install]
 WantedBy=multi-user.target
