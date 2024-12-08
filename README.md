@@ -101,3 +101,5 @@ sudo systemctl start asbot.service
 sudo systemctl status asbot.service
 ```
 в случае неудачи будут выведены коды ошибок. 
+
+##### По вопросам о проекте: https://t.me/wild_turtles или https://t.me/Dellnoz
