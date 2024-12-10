@@ -1,12 +1,13 @@
 def msg_microparser(msg_micro):
     micro_res_list = []
     if msg_micro['attachments']:
-        if "photo" in msg_micro['attachments'][0].keys():
-            micro_res_list.append(msg_micro['attachments'][0]["photo"]['orig_photo']['url'])
-        elif "doc" in msg_micro['attachments'][0].keys():
-            micro_res_list.append(msg_micro['attachments'][0]["doc"]['url'])
-        elif "audio" in msg_micro['attachments'][0].keys():
-            micro_res_list.append(msg_micro['attachments'][0]["audio"]['url'])
+        for i in msg_micro['attachments']:
+            if "photo" in i.keys():
+                micro_res_list.append(i["photo"]['orig_photo']['url'])
+            elif "doc" in i.keys():
+                micro_res_list.append(i["doc"]['url'])
+            elif "audio" in i.keys():
+                micro_res_list.append(i["audio"]['url'])
     if msg_micro["text"]:
         micro_res_list.append(msg_micro["text"])
     return micro_res_list
